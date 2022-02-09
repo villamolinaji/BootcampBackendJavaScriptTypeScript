@@ -1,6 +1,6 @@
 //JavaScript
 //Ejercicio 1
-/*const data = `id,name,surname,gender,email,picture
+const data1 = `id,name,surname,gender,email,picture
 15519533,Raul,Flores,male,raul.flores@example.com,https://randomuser.me/api/portraits/men/42.jpg
 82739790,Alvaro,Alvarez,male,alvaro.alvarez@example.com,https://randomuser.me/api/portraits/men/48.jpg
 37206344,Adrian,Pastor,male,adrian.pastor@example.com,https://randomuser.me/api/portraits/men/86.jpg
@@ -34,13 +34,13 @@ const fromCSV = (csv, nAttrs = 0) => {
     return result;
 };
 
-const result = fromCSV(data, 4);
+const result1 = fromCSV(data1, 4);
 console.log("*******************EJERCICIO 1***************************");
-console.log(result);
-*/
+console.log(result1);
+
 
 //Ejercicio 2
-/*const elements = ["lorem", "ipsum", "dolor", "sit", "amet"];
+const elements2 = ["lorem", "ipsum", "dolor", "sit", "amet"];
 const index = 2;
 const newValue = "furor";
 
@@ -55,14 +55,14 @@ const replaceAt = (arr, index, newElement) => {
     return arrClone;
 };
 
-const result = replaceAt(elements, index, newValue);
+const result2 = replaceAt(elements2, index, newValue);
 console.log("*******************EJERCICIO 2***************************");
-console.log(result === elements); // false
-console.log(result); // ['lorem', 'ipsum', 'furor', 'sit', 'amet'];*/
+console.log(result2 === elements2); // false
+console.log(result2); // ['lorem', 'ipsum', 'furor', 'sit', 'amet'];
 
 
 //Ejercicio 3
-/*const data = [
+const data = [
     { ranking: 6.3, year: 1998, name: "Monroe", gender: "Genderfluid", id: 1450, surname: "Jerde" },
     { ranking: 5.4, year: 1999, name: "Maxie", gender: "Bigender", id: 1652, surname: "Keebler" },
     { ranking: 8.7, year: 2000, name: "Emilee", gender: "Genderqueer", id: 4779, surname: "Ritchie" },
@@ -128,11 +128,11 @@ console.log(result); // ['lorem', 'ipsum', 'furor', 'sit', 'amet'];*/
   console.log(winnerByYear(data, 2001)) // [ 'Dino', 'Sam', 'Eleanora' ]
   console.log(winnerByYear(data, 2002)) // [ 'Sean', 'Lang', 'Coleen' ]
   console.log(winnerByYear(data, 2003)) // [ 'Brianna', 'Francene', 'Everett' ]
-  console.log(winnerByYear(data, 2004)) // []*/
+  console.log(winnerByYear(data, 2004)) // []
 
 
-  //Ejercicio 4
-/*const collection = [
+//Ejercicio 4
+const collection = [
   {
     id: "f0b6930c-331a-43e1-80db-e6c46ed552aa",
     nationality: "Barbadians",
@@ -230,11 +230,10 @@ const normalize = (arr) => {
 const result = normalize(collection);
 console.log("*******************EJERCICIO 4***************************");
 console.log(result);
-*/
 
 
 //Ejercicio 5
-/*const elements = [0, 1, false, 2, "", 3];
+const elements = [0, 1, false, 2, "", 3];
 const falsyValues: any[] = [0, undefined, null, NaN, false]
 
 const compact = (arg) => {    
@@ -261,4 +260,150 @@ console.log(compact(123)); // 123
 console.log(compact(null)); // null
 console.log(compact([0, 1, false, 2, "", 3])); // [1, 2, 3]
 console.log(compact({})); // {}
-console.log(compact({ price: 0, name: "cloud", altitude: NaN, taste: undefined, isAlive: false })); // {name: "cloud"}*/
+console.log(compact({ price: 0, name: "cloud", altitude: NaN, taste: undefined, isAlive: false })); // {name: "cloud"}
+
+//TypeScript
+//Ejercicio 1
+console.log("*******************EJERCICIO 1***************************");
+interface Student {
+    name: string;
+    age: number;
+    occupation : string;
+}
+
+const students: Student[] = [
+    {
+      name: "Patrick Berry",
+      age: 25,
+      occupation: "Medical scientist",
+    },
+    {
+      name: "Alice Garner",
+      age: 34,
+      occupation: "Media planner",
+    },
+  ];
+  
+  const logStudent = ({ name, age }: Student) => {
+    console.log(`  - ${name}, ${age}`);
+  };
+  
+  console.log("Students:");
+  students.forEach(logStudent);
+
+  //Ejercicio 2
+console.log("*******************EJERCICIO 2***************************");
+interface Teacher {
+    name: string;
+    age: number;
+    subject: string;
+}
+
+type User = Student | Teacher;
+
+const users: User[] = [
+    {
+      name: "Luke Patterson",
+      age: 32,
+      occupation: "Internal auditor",
+    },
+    {
+      name: "Jane Doe",
+      age: 41,
+      subject: "English",
+    },
+    {
+      name: "Alexandra Morton",
+      age: 35,
+      occupation: "Conservation worker",
+    },
+    {
+      name: "Bruce Willis",
+      age: 39,
+      subject: "Biology",
+    },
+  ];
+  
+  const logUser2 = ({ name, age }: User) => {
+    console.log(`  - ${name}, ${age}`);
+  };
+  
+  users.forEach(logUser2);
+
+//Ejercicio 3
+console.log("*******************EJERCICIO 3***************************");
+
+function isTeacher(user: User): user is Teacher {
+    return 'subject' in user;
+}
+
+function isStudent(user: User): user is Student {
+    return 'occupation' in user;
+}
+
+const logUser = (user: User) => {
+    let extraInfo: string;
+    if (isStudent(user)) {
+      extraInfo = user.occupation;
+    } else {
+      extraInfo = user.subject;
+    }
+    console.log(`  - ${user.name}, ${user.age}, ${extraInfo}`);
+  };
+
+  users.forEach(logUser);
+
+//Ejercicio 4
+console.log("*******************EJERCICIO 4***************************");
+const students4: Student[] = [
+    {
+      name: "Luke Patterson",
+      age: 32,
+      occupation: "Internal auditor",
+    },
+    {
+      name: "Emily Coleman",
+      age: 25,
+      occupation: "English",
+    },
+    {
+      name: "Alexandra Morton",
+      age: 35,
+      occupation: "Conservation worker",
+    },
+    {
+      name: "Bruce Willis",
+      age: 39,
+      occupation: "Placement officer",
+    },
+  ];
+
+  type Criteria = { [Key: string]: number};
+  
+  const filterStudentsBy = (students: Student[], criteria: Criteria): Student[] => {
+    return students.filter((user) => {
+      const criteriaKeys = Object.keys(criteria);
+      return criteriaKeys.every((fieldName) => {
+        return criteria[fieldName] === user[fieldName];
+      });
+    });
+  };
+  
+  const logStudent4 = ({ name, occupation }: Student) => {
+    console.log(`  - ${name}, ${occupation}`);
+  };
+  
+  console.log("Students of age 35:");    
+  filterStudentsBy(students4, { "age": 35 }).forEach(logStudent4);
+
+  //Ejercicio 5
+  console.log("*******************EJERCICIO 5***************************");
+  const swap = <T, U>(arg1: T, arg2: U): [U, T] => {
+    return [arg2, arg1];
+  };
+  
+  let age: number, occupation: string;
+  
+  [occupation, age] = swap(39, "Placement officer");
+  console.log("Occupation: ", occupation);
+  console.log("Age: ", age);
